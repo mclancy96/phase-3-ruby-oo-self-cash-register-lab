@@ -26,4 +26,13 @@ class CashRegister
       "There is no discount to apply."
     end
   end
+
+  def items
+    @transactions.flat_map { |transaction| [transaction[:title]] * transaction[:quantity] }
+  end
+
+  def void_last_transaction
+    @transactions.pop
+    total_transactions
+  end
 end
